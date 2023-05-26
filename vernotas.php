@@ -9,7 +9,7 @@ use actividadController\ActividadController;
 
 $actividadController = new ActividadController();
 
-$notas = $actividadController->readAct();
+$notas = $actividadController->read();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -39,7 +39,7 @@ $notas = $actividadController->readAct();
                     echo '  <td>' . $nota->getDesc() . '</td>';
                     echo '  <td>' . $nota->getNota() . '</td>';
                     echo '  <td>';
-                    echo '      <a href="views/accion_modificar_actividad.php?id=' . $nota->getId() . '">modificar</a>';
+                    echo '      <a href="views/accion_modificar_actividad.php?codigoEstudiante=' . $nota->getCodEs() . '">modificar</a>';
                     echo '      <a href="views/accion_borrar_actividad.php?id=' . $nota->getId() . '">borrar</a>';
                     echo '  </td>';
                     echo '</tr>';

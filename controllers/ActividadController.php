@@ -2,14 +2,16 @@
 
 namespace actividadController;
 
+use baseControler\BaseController;
 use conexionDb\ConexionDbController;
 use estudiante\Estudiante;
 use nota\Nota;
 
-class ActividadController 
+class ActividadController extends Basecontroller
 {
 
-function createAct($nota)
+
+function create($estudiante,$nota)
 {
 
     $sql = 'INSERT INTO actividades ';
@@ -29,7 +31,7 @@ function createAct($nota)
 
 
 
-    function readAct(){
+function read(){
         $sql = 'select * from actividades';
         $conexiondb = new ConexionDbController();
         $resultadoSQL = $conexiondb->execSQL($sql);
@@ -50,7 +52,7 @@ function createAct($nota)
     }
 
 
-    function readRowAct($id)
+    function readRow($id)
     {
         $sql = 'select * from actividades';
         $sql .= ' where id=' . $id;
@@ -77,7 +79,7 @@ function createAct($nota)
     }
 
 
-    function deleteAct($id)
+    function delete($id)
     {
         $sql = 'delete from actividades where id=' . $id;
         $conexiondb = new ConexionDbController();

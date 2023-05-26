@@ -13,6 +13,7 @@ $nota = new Nota();
 $nota->setId($_POST['id']);
 $nota->setDesc($_POST['descripcion']);
 $nota->setNota($_POST['nota']);
+$nota->setCodEs($_POST['codigo']);
 
 
 
