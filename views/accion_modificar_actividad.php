@@ -14,8 +14,7 @@ $nota->setDesc($_POST['descripcion']);
 $nota->setNota($_POST['nota']);
 
 $estudianteController = new EstudianteController();
-$resultado = $estudianteController->update($nota->getDesc(), $nota);
-$resultado = $estudianteController->update($nota->getNota(), $nota);
+$resultado = $estudianteController->update($nota->getDesc(), $nota, $nota->getNota(), $nota);
 if ($resultado) {
     echo '<h1>Usuarios modificado</h1>';
 } else {
