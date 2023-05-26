@@ -18,7 +18,7 @@ $nota->setCodEs($_POST['codigo']);
 
 
 $actividadController = new ActividadController();
-$resultado = $actividadController->createAct($nota);
+$resultado = $actividadController->create($nota);
 if ($resultado) {
     echo '<h1>Usuarios registrado</h1>';
 } else {
