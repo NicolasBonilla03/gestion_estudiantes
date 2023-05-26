@@ -1,16 +1,25 @@
 <?php
-require '../models/estudiante.php';
 require '../models/nota.php';
 require '../controllers/conexionDbController.php';
 require '../controllers/baseController.php';
 require '../controllers/ActividadController.php';
 
+
+use nota\Nota;
 use actividadController\ActividadController;
 
+$nota = new Nota();
+
+$nota->setId($_POST['id']);
+$nota->setDesc($_POST['descripcion']);
+$nota->setNota($_POST['nota']);
+
+
+
 $actividadController = new ActividadController();
-$resultado = $actividadController->deleteAct($_GET['id']);
+$resultado = $actividadController->createAct($nota);
 if ($resultado) {
-    echo '<h1>Actividad borrada</h1>';
+    echo '<h1>Usuarios registrado</h1>';
 } else {
-    echo '<h1>No se pudo borrar el usuario</h1>';
+    echo '<h1>No se pudo registrar el usuario</h1>';
 }

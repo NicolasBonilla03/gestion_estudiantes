@@ -3,13 +3,13 @@ require 'models/estudiante.php';
 require 'models/nota.php';
 require 'controllers/conexionDbController.php';
 require 'controllers/baseController.php';
-require 'controllers/estudianteController.php';
+require 'controllers/ActividadController.php';
 
-use estudianteController\EstudianteController;
+use actividadController\ActividadController;
 
-$estudianteController = new EstudianteController();
+$actividadController = new ActividadController();
 
-$notas = $estudianteController->readd();
+$notas = $actividadController->readAct();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,7 +22,7 @@ $notas = $estudianteController->readd();
 <body>
     <main>
         <h1>Lista de Notas</h1>
-        <a href="views/form_estudiante.php">Registrar notas</a>
+        <a href="views/form_actividad.php">Registrar notas</a>
         <table>
             <thead>
                 <tr>
@@ -39,8 +39,8 @@ $notas = $estudianteController->readd();
                     echo '  <td>' . $nota->getDesc() . '</td>';
                     echo '  <td>' . $nota->getNota() . '</td>';
                     echo '  <td>';
-                    echo '      <a href="views/accion_modificar_actividad.php?codigoEstudiante=' . $nota->getCodEs() . '">modificar</a>';
-                    echo '      <a href="views/accion_borrar_actividad.php?codigoEstudiante=' . $nota->getCodEs() . '">borrar</a>';
+                    echo '      <a href="views/accion_modificar_actividad.php?id=' . $nota->getId() . '">modificar</a>';
+                    echo '      <a href="views/accion_borrar_actividad.php?id=' . $nota->getId() . '">borrar</a>';
                     echo '  </td>';
                     echo '</tr>';
                 }

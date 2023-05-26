@@ -12,33 +12,37 @@ class EstudianteController extends BaseController
 
 function create($estudiante, $nota)
 {
-    $sql1 = 'INSERT INTO estudiantes ';
-    $sql1 .= '(codigo, nombres, apellidos) VALUES ';
+    $sql = 'INSERT INTO estudiantes ';
+    $sql .= '(codigo, nombres, apellidos) VALUES ';
+    $sql .= '(';
+    $sql .= $estudiante->getCodigo() . ', ';
+    $sql .= '"' . $estudiante->getNombre() . '", ';
+    $sql .= '"' . $estudiante->getApellido() . '"';
+    $sql .= ');';
+
+    $sql1 = 'INSERT INTO actividades ';
+    $sql1 .= '(id, descripcion, nota, codigoEstudiante) VALUES ';
     $sql1 .= '(';
-    $sql1 .= $estudiante->getCodigo() . ', ';
-    $sql1 .= '"' . $estudiante->getNombre() . '", ';
-    $sql1 .= '"' . $estudiante->getApellido() . '"';
+    $sql1 .= $nota->getId() . ', ';
+    $sql1 .= '"' . $nota->getDesc() . '", ';
+    $sql1 .= '"' . $nota->getNota() . '", ';
+    $sql1 .= $estudiante->getCodigo();
     $sql1 .= ');';
 
-    $sql2 = 'INSERT INTO actividades ';
-    $sql2 .= '(id, descripcion, nota, codigoEstudiante) VALUES ';
-    $sql2 .= '(';
-    $sql2 .= $nota->getId() . ', ';
-    $sql2 .= '"' . $nota->getDesc() . '", ';
-    $sql2 .= '"' . $nota->getNota() . '", ';
-    $sql2 .= $estudiante->getCodigo();
-    $sql2 .= ');';
-
     $conexiondb = new ConexionDbController();
+    $resultadoSQL = $conexiondb->execSQL($sql);
     $resultadoSQL1 = $conexiondb->execSQL($sql1);
-    $resultadoSQL2 = $conexiondb->execSQL($sql2);
     $conexiondb->close();
 
-    if ($resultadoSQL1 && $resultadoSQL2) {
+    if($resultadoSQL && $resultadoSQL1){
         return true;
-    } else {
+    }else{
         return false;
     }
+}
+
+function createAct($nota){
+
 }
 
     function read()
@@ -62,24 +66,11 @@ function create($estudiante, $nota)
         return $estudiantes;
 
     }
-    function readd(){
-        $sql = 'select * from actividades';
-        $conexiondb = new ConexionDbController();
-        $resultadoSQL = $conexiondb->execSQL($sql);
-        $notas = [];
-        while ($registroo = $resultadoSQL->fetch_assoc()) {
-            $nota = new Nota();
-            $nota->setId($registroo['id']);
-            $nota->setDesc($registroo['descripcion']);
-            $nota->setNota($registroo['nota']);
-            array_push($notas, $nota);
-        }
+    function readAct(){
+
 
 
         
-            
-        $conexiondb->close();
-        return $notas;
     }
 
     function readRow($codigo)
@@ -100,26 +91,14 @@ function create($estudiante, $nota)
       
     }
 
-    function readRowAct($codigo)
-    {
-        $sql = 'select * from actividades';
-        $sql .= ' where codigoEstudiante=' . $codigo;
-        $conexiondb = new ConexionDbController();
-        $resultadoSQL = $conexiondb->execSQL($sql);
-        $nota = new Nota();
-        while ($registroo = $resultadoSQL->fetch_assoc()) {   
-            $nota->setDesc($registroo['descripcion']);
-            $nota->setNota($registroo['nota']);
-        }
-        return $nota;
-    }
 
-    function update($codigo, $nota)
+
+    function update($id, $nota)
     {
             $sql = 'update actividades set';
             $sql .= 'descripcion ="'.$nota->getDesc().'",';
             $sql .= 'nota ="'.$nota->getNota().'"';
-            $sql .= ' where codigoEstudiante ='. $codigo;
+            $sql .= ' where id ='. $id;
             $conexiondb = new ConexionDbController();
             $resultadoSQL = $conexiondb->execSQL($sql);
             $conexiondb->close();
@@ -135,9 +114,9 @@ function create($estudiante, $nota)
         return $resultadoSQL;
     }
 
-    function deleteAct($codigo)
+    function deleteAct($id)
     {
-        $sql = 'delete from actividades where codigoEstudiante=' . $codigo;
+        $sql = 'delete from actividades where id=' . $id;
         $conexiondb = new ConexionDbController();
         $resultadoSQL = $conexiondb->execSQL($sql);
         $conexiondb->close();

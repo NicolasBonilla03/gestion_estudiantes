@@ -3,18 +3,18 @@ require '../models/estudiante.php';
 require '../models/nota.php';
 require '../controllers/conexionDbController.php';
 require '../controllers/baseController.php';
-require '../controllers/estudianteController.php';
+require '../controllers/ActividadController.php';
 
 use estudiante\Estudiante;
 use nota\Nota;
-use estudianteController\EstudianteController;
+use actividadController\ActividadController;
 
 $nota = new Nota();
 $nota->setDesc($_POST['descripcion']);
 $nota->setNota($_POST['nota']);
 
-$estudianteController = new EstudianteController();
-$resultado = $estudianteController->update($nota->getDesc(), $nota, $nota->getNota(), $nota);
+$actividadController = new ActividadController();
+$resultado = $actividadController->update($nota->getDesc(), $nota, $nota->getNota(), $nota);
 if ($resultado) {
     echo '<h1>Usuarios modificado</h1>';
 } else {
