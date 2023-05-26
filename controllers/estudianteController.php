@@ -41,9 +41,7 @@ function create($estudiante, $nota)
     }
 }
 
-function createAct($nota){
 
-}
 
     function read()
     {
@@ -66,12 +64,7 @@ function createAct($nota){
         return $estudiantes;
 
     }
-    function readAct(){
 
-
-
-        
-    }
 
     function readRow($codigo)
     {
@@ -114,13 +107,5 @@ function createAct($nota){
         return $resultadoSQL;
     }
 
-    function deleteAct($id)
-    {
-        $sql = 'delete from actividades where id=' . $id;
-        $conexiondb = new ConexionDbController();
-        $resultadoSQL = $conexiondb->execSQL($sql);
-        $conexiondb->close();
-        return $resultadoSQL;
-    }
 
 }
