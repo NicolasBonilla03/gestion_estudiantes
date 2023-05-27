@@ -10,7 +10,6 @@ use nota\Nota;
 class ActividadController 
 {
 
-
 function create($nota)
 {
 
@@ -28,8 +27,6 @@ function create($nota)
         return $resultadoSQL;
 }
 
-
-
 function read($codigo){
         $sql = 'select * from actividades where codigoEstudiante = '.$codigo;
         $conexiondb = new ConexionDbController();
@@ -41,17 +38,10 @@ function read($codigo){
             $nota->setDesc($registro['descripcion']);
             $nota->setNota($registro['nota']);
             array_push($notas, $nota);
-        }
-
-
-        
-            
+        }             
         $conexiondb->close();
         return $notas;
     }
-
-
-
 
     function update($id, $nota)
     {
@@ -64,7 +54,6 @@ function read($codigo){
             $conexiondb->close();
             return $resultadoSQL;
     }
-
 
     function delete($id)
     {
