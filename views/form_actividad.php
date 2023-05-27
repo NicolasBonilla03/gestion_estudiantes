@@ -32,10 +32,20 @@ if(!empty($id)) {
 <body>
     <h1><?php echo $titulo;?></h1>
     <form action="<?php echo $urlAction;?>" method="post">
-        <label>
-            <span>Id:</span>
-            <input type="text" name="id" value="<?php echo $nota->getId();?>" required >
-        </label>
+        <?php
+        if (!empty($nota->getId())){
+            echo '<label>';
+            echo '<span>Id: '.$nota->getId().'</span>';
+            echo '</label>';
+            echo '<br>';
+        }else{
+            echo '<label>';
+            echo '<span>Id:</span>';
+            echo '<input type="number" name="id" value="'.$nota->getId().'" required >';
+            echo '</label>';
+            echo '<br>';
+        }
+        ?>
         <label>
             <span>Descripcion:</span>
             <input type="text" name="descripcion" value="<?php echo $nota->getDesc();?>" required >
