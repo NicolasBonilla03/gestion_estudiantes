@@ -24,3 +24,6 @@ if ($resultado) {
 } else {
     echo '<h1>No se pudo registrar el usuario</h1>';
 }
+?>
+<br>
+<a href="../index.php">Volver al inicio</a>

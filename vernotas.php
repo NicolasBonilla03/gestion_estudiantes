@@ -45,7 +45,7 @@ $notas = $actividadController->read($codigo);
                     echo '  <td>';
                     $notaa=$nota->getNota()+$notaa;
                     $promedio = $notaa/$cont;
-                    echo '      <a href="views/accion_modificar_actividad.php?id=' . $nota->getId() . '">modificar</a>';
+                    echo '      <a href="views/form_actividad.php?id=' . $nota->getId() . '">modificar</a>';
                     echo '      <a href="views/accion_borrar_actividad.php?id=' . $nota->getId() . '">borrar</a>';
                     echo '  </td>';
                     echo '</tr>';
@@ -66,6 +66,8 @@ $notas = $actividadController->read($codigo);
         }
         ?>
     </main>
+<br>
+<a href="./index.php">Volver a estudiantes</a>
 </body>
 
 </html>

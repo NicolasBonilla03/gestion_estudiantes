@@ -51,6 +51,7 @@ function read($codigo){
         $resultadoSQL = $conexiondb->execSQL($sql);
         $nota = new Nota();
         while ($registro = $resultadoSQL->fetch_assoc()) {   
+            $nota->setId($registro['id']);
             $nota->setDesc($registro['descripcion']);
             $nota->setNota($registro['nota']);
         }
@@ -60,7 +61,7 @@ function read($codigo){
 
     function update($id, $nota)
     {
-            $sql = 'update actividades set';
+            $sql = 'update actividades set ';
             $sql .= 'descripcion ="'.$nota->getDesc().'",';
             $sql .= 'nota ="'.$nota->getNota().'"';
             $sql .= ' where id ='. $id;

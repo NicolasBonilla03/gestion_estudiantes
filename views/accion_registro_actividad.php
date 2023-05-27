@@ -25,3 +25,4 @@ if ($resultado) {
 } else {
     echo '<h1>No se pudo registrar la actividad</h1>';
 }
+?>

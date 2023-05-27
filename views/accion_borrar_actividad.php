@@ -14,3 +14,6 @@ if ($resultado) {
 } else {
     echo '<h1>No se pudo borrar la actividad</h1>';
 }
+?>
+<br>
+<a href="../vernotas.php">Volver a notas</a>

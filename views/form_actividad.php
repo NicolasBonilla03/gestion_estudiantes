@@ -8,17 +8,17 @@ require '../controllers/ActividadController.php';
 use nota\Nota;
 use estudiante\Estudiante;
 use actividadController\ActividadController;
-$codigo = $_GET['codigo'];
-
-$nota = new Nota();
 $id = empty($_GET['id']) ? '' : $_GET['id'];
 $titulo = 'Registrar actividad';
+$nota = new Nota();
 $urlAction = "accion_registro_actividad.php?codigoEstudiante=". $nota->getCodEs();
 if(!empty($id)) {
     $titulo = 'Modificar Actividad';
-    $urlAction = 'accion_modificar_actividad.php?id='.$id;
+    $urlAction = 'accion_modificar_actividad.php';
     $actividadController = new ActividadController();
     $nota=$actividadController->readRow($id);
+}else{
+    $codigo = $_GET['codigo'];
 }
 ?>
 <!DOCTYPE html>
