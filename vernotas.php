@@ -33,12 +33,17 @@ $notas = $actividadController->read($codigo);
             </thead>
             <tbody>
                 <?php
+                $cont=0;
+                $notaa=0;
                 foreach ($notas as $nota) {
+                    $cont=1+$cont;
                     echo '<tr>';
                     echo '  <td>' . $nota->getId() . '</td>';
                     echo '  <td>' . $nota->getDesc() . '</td>';
                     echo '  <td>' . $nota->getNota() . '</td>';
                     echo '  <td>';
+                    $notaa=$nota->getNota()+$notaa;
+                    $promedio = $notaa/$cont;
                     echo '      <a href="views/accion_modificar_actividad.php?id=' . $nota->getId() . '">modificar</a>';
                     echo '      <a href="views/accion_borrar_actividad.php?id=' . $nota->getId() . '">borrar</a>';
                     echo '  </td>';
@@ -47,6 +52,14 @@ $notas = $actividadController->read($codigo);
                 ?>
             </tbody>
         </table>
+        <p>El promedio es <?php echo $promedio;?></p>
+        <?php 
+        if($promedio<3){
+            echo '<h1 style="color: red">No aprobaste</h1>';
+        }else{
+            echo '<h1 style="color: green">Felicidades, aprobaste</h1>';
+        }
+        ?>
     </main>
 </body>
 
