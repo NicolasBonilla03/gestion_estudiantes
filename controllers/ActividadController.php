@@ -43,6 +43,21 @@ function read($codigo){
         return $notas;
     }
 
+    function readRow($id)
+    {
+        $sql = 'select * from actividades';
+        $sql .= ' where id=' . $id;
+        $conexiondb = new ConexionDbController();
+        $resultadoSQL = $conexiondb->execSQL($sql);
+        $nota = new Nota();
+        while ($registro = $resultadoSQL->fetch_assoc()) {   
+            $nota->setDesc($registro['descripcion']);
+            $nota->setNota($registro['nota']);
+        }
+        $conexiondb->close();
+        return $nota;
+    }
+
     function update($id, $nota)
     {
             $sql = 'update actividades set';

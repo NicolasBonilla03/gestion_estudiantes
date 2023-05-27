@@ -35,6 +35,7 @@ $notas = $actividadController->read($codigo);
                 <?php
                 $cont=0;
                 $notaa=0;
+                $promedio=0;
                 foreach ($notas as $nota) {
                     $cont=1+$cont;
                     echo '<tr>';
@@ -52,10 +53,14 @@ $notas = $actividadController->read($codigo);
                 ?>
             </tbody>
         </table>
-        <p>El promedio es <?php echo $promedio;?></p>
         <?php 
-        if($promedio<3){
+        if ($promedio !=0){
+        echo '<p>El promedio es '.$promedio.'</p>';
+        }
+        if($promedio<3 && $promedio>0){
             echo '<h1 style="color: red">No aprobaste</h1>';
+        }else if ($promedio==0){
+            echo '<h1 style="color: green">Registre notas primero</h1>';
         }else{
             echo '<h1 style="color: green">Felicidades, aprobaste</h1>';
         }

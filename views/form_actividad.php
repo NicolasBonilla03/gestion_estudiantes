@@ -14,8 +14,11 @@ $nota = new Nota();
 $id = empty($_GET['id']) ? '' : $_GET['id'];
 $titulo = 'Registrar actividad';
 $urlAction = "accion_registro_actividad.php?codigoEstudiante=". $nota->getCodEs();
-if(!empty($codigo)) {
-
+if(!empty($id)) {
+    $titulo = 'Modificar Actividad';
+    $urlAction = 'accion_modificar_actividad.php?id='.$id;
+    $actividadController = new ActividadController();
+    $nota=$actividadController->readRow($id);
 }
 ?>
 <!DOCTYPE html>
@@ -31,16 +34,16 @@ if(!empty($codigo)) {
     <form action="<?php echo $urlAction;?>" method="post">
         <label>
             <span>Id:</span>
-            <input type="text" name="id" value="<?php echo $nota->getId();?>" >
+            <input type="text" name="id" value="<?php echo $nota->getId();?>" required >
         </label>
         <label>
             <span>Descripcion:</span>
-            <input type="text" name="descripcion" value="<?php echo $nota->getDesc();?>" >
+            <input type="text" name="descripcion" value="<?php echo $nota->getDesc();?>" required >
         </label>
         <br>
         <label>
             <span>Nota:</span>
-            <input type="number" name="nota" value="<?php echo $nota->getNota();?>" >
+            <input type="number" name="nota" min="1" max="5" value="<?php echo $nota->getNota();?>" required >
         </label>
         <label>
             <input type="hidden" name="codigo" value="<?php echo $codigo;?>" required>

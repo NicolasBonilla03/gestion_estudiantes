@@ -20,23 +20,16 @@ function create($estudiante, $nota)
     $sql .= '"' . $estudiante->getApellido() . '"';
     $sql .= ');';
 
-    $sql1 = 'INSERT INTO actividades ';
-    $sql1 .= '(codigoEstudiante) VALUES ';
-    $sql1 .= '(';
-    $sql1 .= $estudiante->getCodigo();
-    $sql1 .= ');';
+
 
     $conexiondb = new ConexionDbController();
     $resultadoSQL = $conexiondb->execSQL($sql);
-    $resultadoSQL1 = $conexiondb->execSQL($sql1);
+
     $conexiondb->close();
 
-    if($resultadoSQL && $resultadoSQL1){
-        return true;
-    }else{
-        return false;
+    return $resultadoSQL;
     }
-}
+
 
     function read()
     {
