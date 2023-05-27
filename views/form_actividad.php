@@ -36,6 +36,7 @@ if(!empty($id)) {
         if (!empty($nota->getId())){
             echo '<label>';
             echo '<span>Id: '.$nota->getId().'</span>';
+            echo '<input type="hidden" name="id" value="'.$nota->getId().'" required >';
             echo '</label>';
             echo '<br>';
         }else{
