@@ -21,11 +21,8 @@ function create($estudiante, $nota)
     $sql .= ');';
 
     $sql1 = 'INSERT INTO actividades ';
-    $sql1 .= '(id, descripcion, nota, codigoEstudiante) VALUES ';
+    $sql1 .= '(codigoEstudiante) VALUES ';
     $sql1 .= '(';
-    $sql1 .= $nota->getId() . ', ';
-    $sql1 .= '"' . $nota->getDesc() . '", ';
-    $sql1 .= '"' . $nota->getNota() . '", ';
     $sql1 .= $estudiante->getCodigo();
     $sql1 .= ');';
 
@@ -39,10 +36,6 @@ function create($estudiante, $nota)
     }else{
         return false;
     }
-}
-
-function createAct($nota){
-
 }
 
     function read()
@@ -66,12 +59,7 @@ function createAct($nota){
         return $estudiantes;
 
     }
-    function readAct(){
 
-
-
-        
-    }
 
     function readRow($codigo)
     {
@@ -114,13 +102,5 @@ function createAct($nota){
         return $resultadoSQL;
     }
 
-    function deleteAct($id)
-    {
-        $sql = 'delete from actividades where id=' . $id;
-        $conexiondb = new ConexionDbController();
-        $resultadoSQL = $conexiondb->execSQL($sql);
-        $conexiondb->close();
-        return $resultadoSQL;
-    }
 
 }

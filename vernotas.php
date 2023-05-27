@@ -8,8 +8,8 @@ require 'controllers/ActividadController.php';
 use actividadController\ActividadController;
 
 $actividadController = new ActividadController();
-
-$notas = $actividadController->read();
+$codigo = $_GET['codigo'];
+$notas = $actividadController->read($codigo);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,7 +22,7 @@ $notas = $actividadController->read();
 <body>
     <main>
         <h1>Lista de Notas</h1>
-        <a href="views/form_actividad.php">Registrar notas</a>
+        <a href="views/form_actividad.php?codigo=<?php echo $codigo;?>">Registrar notas</a>
         <table>
             <thead>
                 <tr>
@@ -39,7 +39,7 @@ $notas = $actividadController->read();
                     echo '  <td>' . $nota->getDesc() . '</td>';
                     echo '  <td>' . $nota->getNota() . '</td>';
                     echo '  <td>';
-                    echo '      <a href="views/accion_modificar_actividad.php?codigoEstudiante=' . $nota->getCodEs() . '">modificar</a>';
+                    echo '      <a href="views/accion_modificar_actividad.php?id=' . $nota->getId() . '">modificar</a>';
                     echo '      <a href="views/accion_borrar_actividad.php?id=' . $nota->getId() . '">borrar</a>';
                     echo '  </td>';
                     echo '</tr>';

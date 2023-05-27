@@ -8,9 +8,9 @@ require '../controllers/ActividadController.php';
 use actividadController\ActividadController;
 
 $actividadController = new ActividadController();
-$resultado = $actividadController->deleteAct($_GET['id']);
+$resultado = $actividadController->delete($_GET['id']);
 if ($resultado) {
     echo '<h1>Actividad borrada</h1>';
 } else {
-    echo '<h1>No se pudo borrar el usuario</h1>';
+    echo '<h1>No se pudo borrar la actividad</h1>';
 }

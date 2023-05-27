@@ -42,19 +42,7 @@ $nota = new Nota();
         </label>
         <br>
         <label>
-            <span>Id Actividad:</span>
-            <input type="number" name="id" value="<?php echo $nota->getId();?>" >
-        </label>
-        <br>
-        <label>
-            <span>Descripcion:</span>
-            <input type="text" name="descripcion" value="<?php echo $nota->getDesc();?>" >
-        </label>
-        <br>
-        <label>
-            <span>Nota:</span>
-            <input type="number" name="nota" value="<?php echo $nota->getNota();?>" >
-        </label>
+
 
         <button type="submit">Guardar</button>
     </form>

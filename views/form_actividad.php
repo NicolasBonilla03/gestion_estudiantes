@@ -8,15 +8,14 @@ require '../controllers/ActividadController.php';
 use nota\Nota;
 use estudiante\Estudiante;
 use actividadController\ActividadController;
+$codigo = $_GET['codigo'];
+
+$nota = new Nota();
 $id = empty($_GET['id']) ? '' : $_GET['id'];
 $titulo = 'Registrar actividad';
-$urlAction = "accion_registro_actividad.php";
-$nota = new Nota();
+$urlAction = "accion_registro_actividad.php?codigoEstudiante=". $nota->getCodEs();
 if(!empty($codigo)) {
-    $titulo = 'Modificar Actividad';
-    $urlAction = "accion_modificar_actividad.php";
-    $actividadController = new ActividadController();
-    $nota=$actividadController->readRowAct($id);
+
 }
 ?>
 <!DOCTYPE html>
@@ -32,7 +31,7 @@ if(!empty($codigo)) {
     <form action="<?php echo $urlAction;?>" method="post">
         <label>
             <span>Id:</span>
-            <input type="number" name="id" value="<?php echo $nota->getId();?>" >
+            <input type="text" name="id" value="<?php echo $nota->getId();?>" >
         </label>
         <label>
             <span>Descripcion:</span>
@@ -43,7 +42,9 @@ if(!empty($codigo)) {
             <span>Nota:</span>
             <input type="number" name="nota" value="<?php echo $nota->getNota();?>" >
         </label>
-
+        <label>
+            <input type="hidden" name="codigo" value="<?php echo $codigo;?>" required>
+        </label>	       
         <button type="submit">Guardar</button>
     </form>
 </body>

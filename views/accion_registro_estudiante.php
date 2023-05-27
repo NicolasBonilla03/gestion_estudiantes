@@ -14,9 +14,6 @@ $nota = new Nota();
 $estudiante->setCodigo($_POST['codigo']);
 $estudiante->setNombre($_POST['nombres']);
 $estudiante->setApellido($_POST['apellidos']);
-$nota->setId($_POST['id']);
-$nota->setDesc($_POST['descripcion']);
-$nota->setNota($_POST['nota']);
 $nota->setCodEs($_POST['codigo']);
 
 
