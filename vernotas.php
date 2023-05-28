@@ -13,10 +13,12 @@ $notas = $actividadController->read($codigo);
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="css/vernotas.css">
+
+
 </head>
 
 <body>
@@ -67,7 +69,9 @@ $notas = $actividadController->read($codigo);
         ?>
     </main>
 <br>
+<div class="boton">
 <a href="./index.php">Volver a estudiantes</a>
+</div>
 </body>
 
 </html>
